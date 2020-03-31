@@ -31,7 +31,7 @@ class BookSpider(RedisSpider):
         item['original'] = ''.join(re.findall(r'<span.*?原作名:</span>\s*(.*?)<br>',info))
         yz = re.search('<span.*?译者</span>(.*?)<br>', info,re.S)
         if yz:
-            item['translator'] = ''.join(re.findall('<a.*?(.*?)</a>',yz.group(1),re.S))
+            item['translator'] = ''.join(re.findall('<a.*?>(.*?)</a>',yz.group(1),re.S))
         else:
             item['translator'] = ''
         item['imprint'] = re.search('<span.*?出版年:</span>\s*([0-9\-]+)<br>',info).group(1) #出版年
